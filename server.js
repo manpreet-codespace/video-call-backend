@@ -123,6 +123,6 @@ server.listen(PORT, () => {
     console.log(`server is listening on port ${PORT}`);
 });
 
-server.get("/", (req, res) => {
+app.get("/", (req, res) => {
   res.send("Backend is running");
 });
