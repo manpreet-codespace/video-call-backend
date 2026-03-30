@@ -30,7 +30,10 @@ io.on("connection", (socket) => {
         socket.join(roomId);
         const nextCount = getRoomSize(roomId) + 1;
         roomCounts.set(roomId, nextCount);
-        socket.emit("room-state", { participantCount: nextCount });
+        socket.emit("room-state", {
+            participantCount: nextCount,
+            isInitiator: nextCount === 1,
+        });
 
         if (nextCount > 1) {
             socket.to(roomId).emit("participant-joined");
