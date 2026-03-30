@@ -92,6 +92,8 @@ io.on("connection", (socket) => {
         } else {
             roomCounts.set(roomId, nextCount);
         }
+
+        socket.to(roomId).emit("participant-left");
     });
 
     socket.on("disconnecting", () => {
@@ -109,6 +111,7 @@ io.on("connection", (socket) => {
             }
 
             socket.to(roomId).emit("call-ended");
+            socket.to(roomId).emit("participant-left");
         });
     });
 
